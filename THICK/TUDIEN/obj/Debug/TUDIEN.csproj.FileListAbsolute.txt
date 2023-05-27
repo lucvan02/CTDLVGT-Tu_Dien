@@ -1,0 +1,12 @@
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\bin\Debug\TUDIEN.exe.config
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\bin\Debug\TUDIEN.exe
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\bin\Debug\TUDIEN.pdb
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\obj\Debug\TUDIEN.csproj.AssemblyReference.cache
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\obj\Debug\TUDIEN.Properties.Resources.resources
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\obj\Debug\TUDIEN.csproj.GenerateResource.cache
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\obj\Debug\TUDIEN.csproj.CoreCompileInputs.cache
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\obj\Debug\TUDIEN.exe
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\obj\Debug\TUDIEN.pdb
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\obj\Debug\TUDIEN.frmAdd.resources
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\obj\Debug\TUDIEN.MainForm.resources
+C:\Users\vanlu\Documents\CSharp\CTDLVGT\THICK\TUDIEN\obj\Debug\TUDIEN.frmEdit.resources
