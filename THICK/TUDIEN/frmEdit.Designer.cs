@@ -32,10 +32,10 @@ namespace TUDIEN
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEdit));
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.rtbEditExample = new System.Windows.Forms.RichTextBox();
-            this.rtbEditDefinition = new System.Windows.Forms.RichTextBox();
-            this.txtEditPartOfSpeech = new System.Windows.Forms.TextBox();
-            this.txtEditWord = new System.Windows.Forms.TextBox();
+            this.rtbExample = new System.Windows.Forms.RichTextBox();
+            this.rtbDefinition = new System.Windows.Forms.RichTextBox();
+            this.txtPartOfSpeech = new System.Windows.Forms.TextBox();
+            this.txtWord = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,37 +73,37 @@ namespace TUDIEN
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // rtbEditExample
+            // rtbExample
             // 
-            this.rtbEditExample.Location = new System.Drawing.Point(201, 198);
-            this.rtbEditExample.Name = "rtbEditExample";
-            this.rtbEditExample.Size = new System.Drawing.Size(170, 52);
-            this.rtbEditExample.TabIndex = 35;
-            this.rtbEditExample.Text = "";
+            this.rtbExample.Location = new System.Drawing.Point(201, 198);
+            this.rtbExample.Name = "rtbExample";
+            this.rtbExample.Size = new System.Drawing.Size(170, 52);
+            this.rtbExample.TabIndex = 35;
+            this.rtbExample.Text = "";
             // 
-            // rtbEditDefinition
+            // rtbDefinition
             // 
-            this.rtbEditDefinition.Location = new System.Drawing.Point(201, 126);
-            this.rtbEditDefinition.Name = "rtbEditDefinition";
-            this.rtbEditDefinition.Size = new System.Drawing.Size(170, 55);
-            this.rtbEditDefinition.TabIndex = 34;
-            this.rtbEditDefinition.Text = "";
+            this.rtbDefinition.Location = new System.Drawing.Point(201, 126);
+            this.rtbDefinition.Name = "rtbDefinition";
+            this.rtbDefinition.Size = new System.Drawing.Size(170, 55);
+            this.rtbDefinition.TabIndex = 34;
+            this.rtbDefinition.Text = "";
             // 
-            // txtEditPartOfSpeech
+            // txtPartOfSpeech
             // 
-            this.txtEditPartOfSpeech.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEditPartOfSpeech.Location = new System.Drawing.Point(203, 93);
-            this.txtEditPartOfSpeech.Name = "txtEditPartOfSpeech";
-            this.txtEditPartOfSpeech.Size = new System.Drawing.Size(168, 20);
-            this.txtEditPartOfSpeech.TabIndex = 33;
+            this.txtPartOfSpeech.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPartOfSpeech.Location = new System.Drawing.Point(203, 93);
+            this.txtPartOfSpeech.Name = "txtPartOfSpeech";
+            this.txtPartOfSpeech.Size = new System.Drawing.Size(168, 20);
+            this.txtPartOfSpeech.TabIndex = 33;
             // 
-            // txtEditWord
+            // txtWord
             // 
-            this.txtEditWord.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEditWord.Location = new System.Drawing.Point(201, 46);
-            this.txtEditWord.Name = "txtEditWord";
-            this.txtEditWord.Size = new System.Drawing.Size(170, 20);
-            this.txtEditWord.TabIndex = 32;
+            this.txtWord.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWord.Location = new System.Drawing.Point(201, 46);
+            this.txtWord.Name = "txtWord";
+            this.txtWord.Size = new System.Drawing.Size(170, 20);
+            this.txtWord.TabIndex = 32;
             // 
             // label4
             // 
@@ -153,10 +153,10 @@ namespace TUDIEN
             this.ClientSize = new System.Drawing.Size(549, 368);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.rtbEditExample);
-            this.Controls.Add(this.rtbEditDefinition);
-            this.Controls.Add(this.txtEditPartOfSpeech);
-            this.Controls.Add(this.txtEditWord);
+            this.Controls.Add(this.rtbExample);
+            this.Controls.Add(this.rtbDefinition);
+            this.Controls.Add(this.txtPartOfSpeech);
+            this.Controls.Add(this.txtWord);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -173,10 +173,10 @@ namespace TUDIEN
 
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.RichTextBox rtbEditExample;
-        private System.Windows.Forms.RichTextBox rtbEditDefinition;
-        private System.Windows.Forms.TextBox txtEditPartOfSpeech;
-        private System.Windows.Forms.TextBox txtEditWord;
+        private System.Windows.Forms.RichTextBox rtbExample;
+        private System.Windows.Forms.RichTextBox rtbDefinition;
+        private System.Windows.Forms.TextBox txtPartOfSpeech;
+        private System.Windows.Forms.TextBox txtWord;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

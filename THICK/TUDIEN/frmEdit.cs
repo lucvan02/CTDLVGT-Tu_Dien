@@ -12,10 +12,7 @@ namespace TUDIEN
 {
     public partial class frmEdit : Form
     {
-        private DictionaryEntry[] entries;
-        DictionaryEntry NewEntry { get; set; }
-
-        private DictionaryEntry entryToEdit;
+        public DictionaryEntry EditedEntry { get; set; }
         public frmEdit()
         {
             InitializeComponent();
@@ -23,33 +20,49 @@ namespace TUDIEN
 
         private void frmEdit_Load(object sender, EventArgs e)
         {
-            txtEditWord.Text = EditedWord.Word;
-            rtbEditDefinition.Text = EditedWord.Definition;
-            rtbEditExample.Text = EditedWord.Example;
-        }
-
-        private void EditWordForm_Load(object sender, EventArgs e)
-        {
-            // Set the initial value of txtEditedWord to the selected word
-            txtEditWord.Text = SelectedWord;
+            if (EditedEntry != null)
+            {
+                // Hiển thị thông tin từ trong các control
+                txtWord.Text = EditedEntry.word;
+                txtPartOfSpeech.Text = EditedEntry.partOfSpeech;
+                rtbDefinition.Text = EditedEntry.definition;
+                rtbExample.Text = EditedEntry.example;
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            string editedWord = txtEditWord.Text;
+            string word = txtWord.Text;
+            string partOfSpeech = txtPartOfSpeech.Text;
+            string definition = rtbDefinition.Text;
+            string example = rtbExample.Text;
 
-            // Perform any necessary validation or processing of the edited word
+            if (string.IsNullOrEmpty(word) || string.IsNullOrEmpty(partOfSpeech) || string.IsNullOrEmpty(definition) || string.IsNullOrEmpty(example))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
 
-            // Update the SelectedWord property with the edited word
-            SelectedWord = editedWord;
+            EditedEntry.word = word;
+            EditedEntry.partOfSpeech = partOfSpeech;
+            EditedEntry.definition = definition;
+            EditedEntry.example = example;
 
-            // Close the form
+            DialogResult = DialogResult.OK;
             Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ClearInputFields()
+        {
+            txtWord.Text = "";
+            txtPartOfSpeech.Text = "";
+            rtbDefinition.Text = "";
+            rtbExample.Text = "";
         }
     }
 }

@@ -21,10 +21,65 @@ namespace TUDIEN
             entries = new DictionaryEntry[0];
         }
 
-        
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            using (var addEntryForm = new frmAdd())
+            {
+                if (addEntryForm.ShowDialog() == DialogResult.OK)
+                {
+                    DictionaryEntry entry = addEntryForm.GetDictionaryEntry();
+                    AddEntry(entry);
+                    ClearInputFields();
+                }
+            }
+        }
 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = lstEntries.SelectedIndex;
 
+            // Kiểm tra nếu không có từ nào được chọn
+            if (selectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn một từ để sửa!");
+                return;
+            }
 
+            DictionaryEntry selectedEntry = entries[selectedIndex];
+
+            frmEdit editForm = new frmEdit();
+            editForm.EditedEntry = selectedEntry;
+            editForm.ShowDialog();
+
+            if (editForm.DialogResult == DialogResult.OK)
+            {
+                DictionaryEntry editedEntry = editForm.EditedEntry;
+                MessageBox.Show("Từ đã được sửa thành công!");
+                RefreshEntryList();
+            }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            string word = txtWord.Text;
+            DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa từ '{word}' không?", "Xác nhận xóa từ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                RemoveEntry(word);
+                ClearInputFields();
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát khỏi chương trình không?", "Xác nhận thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                this.Close(); // Close the form
+            }
+        }
 
         private void btnLookUp_Click(object sender, EventArgs e)
         {
@@ -37,7 +92,6 @@ namespace TUDIEN
             }
 
             LookupWord(word);
-            ClearInputFields();
         }
 
         private void btnSaveToFile_Click(object sender, EventArgs e)
@@ -112,6 +166,18 @@ namespace TUDIEN
             RefreshEntryList();
         }
 
+        public void EditEntry(DictionaryEntry editedEntry)
+        {
+            for (int i = 0; i < lstEntries.Items.Count; i++)
+            {
+                DictionaryEntry entry = lstEntries.Items[i] as DictionaryEntry;
+                if (entry.word == editedEntry.word)
+                {
+                    lstEntries.Items[i] = editedEntry;
+                    break;
+                }
+            }
+        }
 
         private void RemoveEntry(string word)
         {
@@ -141,27 +207,6 @@ namespace TUDIEN
             }
         }
 
-        /*private void LookupWord(string word)
-        {
-            int[] matchingIndexes = FindMatchingIndexes(word);
-            if (matchingIndexes.Length == 0)
-            {
-                MessageBox.Show("Không tìm thấy từ này!");
-                return;
-            }
-
-            string result = "";
-            foreach (int index in matchingIndexes)
-            {
-                var entry = entries[index];
-                result += "Word: " + entry.word + Environment.NewLine;
-                result += "Part of Speech: " + entry.partOfSpeech + Environment.NewLine;
-                result += "Definition: " + entry.definition + Environment.NewLine;
-                result += "Example: " + entry.example + Environment.NewLine + Environment.NewLine;
-            }
-
-            MessageBox.Show(result);
-        }*/
         private void LookupWord(string word)
         {
             int[] matchingIndexes = FindMatchingIndexes(word);
@@ -181,8 +226,6 @@ namespace TUDIEN
                 rtbLookupResult.AppendText("Example: " + entry.example + Environment.NewLine + Environment.NewLine);
             }
         }
-
-
 
         private int CompareWords(string word1, string word2)
         {
@@ -216,7 +259,6 @@ namespace TUDIEN
             return indexes;
         }
 
-
         private void SaveDictionaryToFile(string fileName)
         {
             if (entries.Length == 0)
@@ -246,7 +288,6 @@ namespace TUDIEN
                 MessageBox.Show("Đã có lỗi khi lưu từ điển: " + ex.Message);
             }
         }
-
 
         private void LoadDictionaryFromFile(string fileName)
         {
@@ -279,9 +320,8 @@ namespace TUDIEN
         private void ClearInputFields()
         {
             txtWord.Text = "";
+            rtbLookupResult.Clear();
         }
-
-
 
         private void RefreshEntryList()
         {
@@ -299,32 +339,37 @@ namespace TUDIEN
             }
         }
 
-
-
         private void lstEntries_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = lstEntries.SelectedIndex;
             if (selectedIndex >= 0)
             {
                 DictionaryEntry selectedEntry = entries[selectedIndex];
-
                 string word = selectedEntry.word;
-
                 txtWord.Text = word;
 
                 string partOfSpeech = selectedEntry.partOfSpeech;
                 string definition = selectedEntry.definition;
                 string example = selectedEntry.example;
 
-                /*string entryDetails = $"Từ: {word}\nLoại từ: {partOfSpeech}\nĐịnh nghĩa:\n {definition}\nVí dụ:\n {example}";*/
-
-                /*MessageBox.Show(entryDetails);*/
-
                 string entryDetails = $"-Word: {word}\n\n-PartOfSpeech: {partOfSpeech}\n\n-Definition:\n {definition}\n\n-Example:\n {example}";
-
                 rtbLookupResult.Text = entryDetails;
             }
         }
+
+        /*private void lstEntries_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = lstEntries.SelectedIndex;
+            if (selectedIndex >= 0)
+            {
+                DictionaryEntry selectedEntry = entries[selectedIndex];
+                string word = selectedEntry.word;
+                txtWord.Text = word;
+
+                LookupWord(word);
+
+            }
+        }*/
 
         private int FindMatchingIndex(string searchKeyword)
         {
@@ -347,66 +392,11 @@ namespace TUDIEN
                 int index = FindMatchingIndex(searchKeyword);
                 if (index != -1)
                 {
-                    // Select the entry in the ListBox
-                    lstEntries.SelectedIndex = index;
                     lstEntries.TopIndex = index;
                 }
             }
-            else
-            {
-                // Clear the selection when the search keyword is empty
-                lstEntries.ClearSelected();
-            }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát khỏi chương trình không?", "Xác nhận thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                this.Close(); // Close the form
-            }
-        }
-
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            string word = txtWord.Text;
-            DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa từ '{word}' không?", "Xác nhận xóa từ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                RemoveEntry(word);
-                ClearInputFields();
-            }
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            using (var addEntryForm = new frmAdd())
-            {
-                if (addEntryForm.ShowDialog() == DialogResult.OK)
-                {
-                    DictionaryEntry entry = addEntryForm.GetDictionaryEntry();
-                    AddEntry(entry);
-                    ClearInputFields();
-                }
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            frmEdit editForm = new frmEdit();
-
-            // Pass the selected word from txtWord to the EditWordForm
-            editForm.SelectedWord = txtWord.Text;
-
-            // Show the EditWordForm
-            editForm.ShowDialog();
-
-            // After the EditWordForm is closed, update the value in txtWord
-            txtWord.Text = editForm.SelectedWord;
-        }
     }
 
     public class DictionaryEntry
