@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace TUDIEN
 {
@@ -41,7 +42,7 @@ namespace TUDIEN
             // Kiểm tra nếu không có từ nào được chọn
             if (selectedIndex == -1)
             {
-                MessageBox.Show("Vui lòng chọn một từ để sửa!");
+                MessageBox.Show("Vui lòng chọn từ cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -54,7 +55,7 @@ namespace TUDIEN
             if (editForm.DialogResult == DialogResult.OK)
             {
                 DictionaryEntry editedEntry = editForm.EditedEntry;
-                MessageBox.Show("Từ đã được sửa thành công!");
+                MessageBox.Show("Từ đã được sửa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 RefreshEntryList();
             }
         }
@@ -62,6 +63,16 @@ namespace TUDIEN
         private void btnRemove_Click(object sender, EventArgs e)
         {
             string word = txtWord.Text;
+            int selectedIndex = lstEntries.SelectedIndex;
+
+            // Kiểm tra nếu không có từ nào được chọn
+            if (selectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn từ cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                return;
+            }
+
             DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa từ '{word}' không?", "Xác nhận xóa từ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -87,7 +98,7 @@ namespace TUDIEN
 
             if (string.IsNullOrEmpty(word))
             {
-                MessageBox.Show("Vui lòng nhập từ cần tìm!");
+                MessageBox.Show("Vui lòng nhập từ cần tìm!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -190,6 +201,12 @@ namespace TUDIEN
             RefreshEntryList();
         }
 
+        private int CompareWords(string word1, string word2)
+        {
+            // So sánh hai từ theo thứ tự từ điển, không phân biệt hoa thường
+            return string.Compare(word1, word2, StringComparison.OrdinalIgnoreCase);
+        }
+
         private void SortEntries()
         {
             for (int i = 0; i < entries.Length - 1; i++)
@@ -220,18 +237,32 @@ namespace TUDIEN
             foreach (int index in matchingIndexes)
             {
                 var entry = entries[index];
-                rtbLookupResult.AppendText("Word: " + entry.word + Environment.NewLine);
-                rtbLookupResult.AppendText("Part of Speech: " + entry.partOfSpeech + Environment.NewLine);
-                rtbLookupResult.AppendText("Definition: " + entry.definition + Environment.NewLine);
-                rtbLookupResult.AppendText("Example: " + entry.example + Environment.NewLine + Environment.NewLine);
-            }
-        }
 
-        private int CompareWords(string word1, string word2)
-        {
-            // So sánh hai từ theo thứ tự từ điển, không phân biệt hoa thường
-            return string.Compare(word1, word2, StringComparison.OrdinalIgnoreCase);
-        }
+                rtbLookupResult.SelectionColor = Color.Blue;
+                rtbLookupResult.AppendText("Word: ");
+
+                rtbLookupResult.SelectionColor = Color.Red;
+                rtbLookupResult.AppendText(entry.word + Environment.NewLine);
+
+                rtbLookupResult.SelectionColor = Color.Blue;
+                rtbLookupResult.AppendText("Part of Speech: ");
+
+                rtbLookupResult.SelectionColor = Color.DarkOrange;
+                rtbLookupResult.AppendText(entry.partOfSpeech + Environment.NewLine);
+
+                rtbLookupResult.SelectionColor = Color.Blue;
+                rtbLookupResult.AppendText("Definition: \n");
+
+                rtbLookupResult.SelectionColor = Color.Black;
+                rtbLookupResult.AppendText(entry.definition + Environment.NewLine);
+
+                rtbLookupResult.SelectionColor = Color.Blue;
+                rtbLookupResult.AppendText("Example: \n");
+
+                rtbLookupResult.SelectionColor = Color.Black;
+                rtbLookupResult.AppendText(entry.example + Environment.NewLine + Environment.NewLine);
+            }
+        }     
 
         private int FindEntryIndex(string word)
         {
@@ -259,11 +290,23 @@ namespace TUDIEN
             return indexes;
         }
 
+        private int FindMatchingIndex(string searchKeyword)
+        {
+            for (int i = 0; i < entries.Length; i++)
+            {
+                if (entries[i].word.StartsWith(searchKeyword, StringComparison.OrdinalIgnoreCase))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         private void SaveDictionaryToFile(string fileName)
         {
             if (entries.Length == 0)
             {
-                MessageBox.Show("Từ điển trống! Không có từ để lưu vào file.");
+                MessageBox.Show("Từ điển trống! Không có từ để lưu vào file.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -280,7 +323,7 @@ namespace TUDIEN
                     }
                 }
 
-                MessageBox.Show("Đã lưu từ điển vào file "+ fileName);
+                MessageBox.Show("Đã lưu từ điển vào file "+ fileName, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearInputFields();
             }
             catch (Exception ex)
@@ -314,7 +357,7 @@ namespace TUDIEN
                 }
             }
 
-            MessageBox.Show("Đã tải dữ liệu từ file " + fileName);
+            MessageBox.Show("Đã tải dữ liệu từ file " + fileName, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ClearInputFields()
@@ -325,17 +368,17 @@ namespace TUDIEN
 
         private void RefreshEntryList()
         {
-            lstEntries.Items.Clear(); // Clear the current items in the ListBox
+            lstEntries.Items.Clear();
 
             if (entries.Length == 0)
             {
-                MessageBox.Show("Từ điển trống. Có thể bạn chưa chọn file tải dữ liệu!");
+                MessageBox.Show("Từ điển trống. Có thể bạn chưa chọn file tải dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             foreach (var entry in entries)
             {
-                lstEntries.Items.Add(entry.word); // Add each word to the ListBox
+                lstEntries.Items.Add(entry.word);
             }
         }
 
@@ -345,50 +388,42 @@ namespace TUDIEN
             if (selectedIndex >= 0)
             {
                 DictionaryEntry selectedEntry = entries[selectedIndex];
-                string word = selectedEntry.word;
-                txtWord.Text = word;
 
-                string partOfSpeech = selectedEntry.partOfSpeech;
-                string definition = selectedEntry.definition;
-                string example = selectedEntry.example;
+                rtbLookupResult.Clear();
 
-                string entryDetails = $"-Word: {word}\n\n-PartOfSpeech: {partOfSpeech}\n\n-Definition:\n {definition}\n\n-Example:\n {example}";
-                rtbLookupResult.Text = entryDetails;
+                rtbLookupResult.SelectionColor = Color.Blue;
+                rtbLookupResult.AppendText("Word: ");
+
+                rtbLookupResult.SelectionColor = Color.Red;
+                rtbLookupResult.AppendText(selectedEntry.word + Environment.NewLine);
+
+                rtbLookupResult.SelectionColor = Color.Blue;
+                rtbLookupResult.AppendText("Part of Speech: ");
+
+                rtbLookupResult.SelectionColor = Color.DarkOrange;
+                rtbLookupResult.AppendText(selectedEntry.partOfSpeech + Environment.NewLine);
+
+                rtbLookupResult.SelectionColor = Color.Blue;
+                rtbLookupResult.AppendText("Definition: \n");
+
+                rtbLookupResult.SelectionColor = Color.Black;
+                rtbLookupResult.AppendText(selectedEntry.definition + Environment.NewLine);
+
+                rtbLookupResult.SelectionColor = Color.Blue;
+                rtbLookupResult.AppendText("Example: \n");
+
+                rtbLookupResult.SelectionColor = Color.Black;
+                rtbLookupResult.AppendText(selectedEntry.example + Environment.NewLine + Environment.NewLine);
             }
         }
 
-        /*private void lstEntries_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int selectedIndex = lstEntries.SelectedIndex;
-            if (selectedIndex >= 0)
-            {
-                DictionaryEntry selectedEntry = entries[selectedIndex];
-                string word = selectedEntry.word;
-                txtWord.Text = word;
-
-                LookupWord(word);
-
-            }
-        }*/
-
-        private int FindMatchingIndex(string searchKeyword)
-        {
-            for (int i = 0; i < entries.Length; i++)
-            {
-                if (entries[i].word.StartsWith(searchKeyword, StringComparison.OrdinalIgnoreCase))
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
+        
 
         private void txtWord_TextChanged(object sender, EventArgs e)
         {
             string searchKeyword = txtWord.Text;
             if (!string.IsNullOrEmpty(searchKeyword))
             {
-                // Find the index of the first entry that starts with the search keyword
                 int index = FindMatchingIndex(searchKeyword);
                 if (index != -1)
                 {

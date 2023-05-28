@@ -27,15 +27,21 @@ namespace TUDIEN
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string word = txtWord.Text;
-            string partOfSpeech = txtPartOfSpeech.Text;
+            string partOfSpeech = cmbPartOfSpeech.Text;
             string definition = rtbDefinition.Text;
             string example = rtbExample.Text;
 
             if (string.IsNullOrEmpty(word) || string.IsNullOrEmpty(partOfSpeech) || string.IsNullOrEmpty(definition) || string.IsNullOrEmpty(example))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            /*if (cmbPartOfSpeech.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn một phần ngữ loại!");
+                return;
+            }*/
 
             DictionaryEntry entry = new DictionaryEntry(word, partOfSpeech, definition, example);
             MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
@@ -53,7 +59,7 @@ namespace TUDIEN
         public DictionaryEntry GetDictionaryEntry()
         {
             string word = txtWord.Text;
-            string partOfSpeech = txtPartOfSpeech.Text;
+            string partOfSpeech = cmbPartOfSpeech.Text;
             string definition = rtbDefinition.Text;
             string example = rtbExample.Text;
 
@@ -62,8 +68,7 @@ namespace TUDIEN
 
         private void ClearInputFields()
         {
-            txtWord.Text = "";
-            txtPartOfSpeech.Text = "";
+            cmbPartOfSpeech.Text = "";
             rtbDefinition.Text = "";
             rtbExample.Text = "";
         }
