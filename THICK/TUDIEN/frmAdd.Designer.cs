@@ -30,7 +30,6 @@ namespace TUDIEN
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdd));
-            this.txtPartOfSpeech = new System.Windows.Forms.TextBox();
             this.txtWord = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,15 +39,8 @@ namespace TUDIEN
             this.rtbExample = new System.Windows.Forms.RichTextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.cmbPartOfSpeech = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // txtPartOfSpeech
-            // 
-            this.txtPartOfSpeech.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPartOfSpeech.Location = new System.Drawing.Point(200, 94);
-            this.txtPartOfSpeech.Name = "txtPartOfSpeech";
-            this.txtPartOfSpeech.Size = new System.Drawing.Size(168, 20);
-            this.txtPartOfSpeech.TabIndex = 2;
             // 
             // txtWord
             // 
@@ -82,7 +74,7 @@ namespace TUDIEN
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(134, 95);
+            this.label2.Location = new System.Drawing.Point(134, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 19);
             this.label2.TabIndex = 29;
@@ -145,17 +137,35 @@ namespace TUDIEN
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // cmbPartOfSpeech
+            // 
+            this.cmbPartOfSpeech.FormattingEnabled = true;
+            this.cmbPartOfSpeech.Items.AddRange(new object[] {
+            "Noun",
+            "Pronoun",
+            "Adjective",
+            "Verb",
+            "Adverb",
+            "Determiner",
+            "Preposition",
+            "Conjunction",
+            "Interjection"});
+            this.cmbPartOfSpeech.Location = new System.Drawing.Point(198, 84);
+            this.cmbPartOfSpeech.Name = "cmbPartOfSpeech";
+            this.cmbPartOfSpeech.Size = new System.Drawing.Size(170, 21);
+            this.cmbPartOfSpeech.TabIndex = 32;
+            // 
             // frmAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(538, 365);
+            this.Controls.Add(this.cmbPartOfSpeech);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.rtbExample);
             this.Controls.Add(this.rtbDefinition);
-            this.Controls.Add(this.txtPartOfSpeech);
             this.Controls.Add(this.txtWord);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -163,7 +173,7 @@ namespace TUDIEN
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAdd";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Thêm từ";
             this.Load += new System.EventHandler(this.frmAdd_Load);
             this.ResumeLayout(false);
@@ -172,7 +182,6 @@ namespace TUDIEN
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtPartOfSpeech;
         private System.Windows.Forms.TextBox txtWord;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -182,5 +191,6 @@ namespace TUDIEN
         private System.Windows.Forms.RichTextBox rtbExample;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ComboBox cmbPartOfSpeech;
     }
 }

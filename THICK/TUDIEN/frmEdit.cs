@@ -24,7 +24,7 @@ namespace TUDIEN
             {
                 // Hiển thị thông tin từ trong các control
                 txtWord.Text = EditedEntry.word;
-                txtPartOfSpeech.Text = EditedEntry.partOfSpeech;
+                cmbPartOfSpeech.Text = EditedEntry.partOfSpeech;
                 rtbDefinition.Text = EditedEntry.definition;
                 rtbExample.Text = EditedEntry.example;
             }
@@ -33,13 +33,13 @@ namespace TUDIEN
         private void btnEdit_Click(object sender, EventArgs e)
         {
             string word = txtWord.Text;
-            string partOfSpeech = txtPartOfSpeech.Text;
+            string partOfSpeech = cmbPartOfSpeech.Text;
             string definition = rtbDefinition.Text;
             string example = rtbExample.Text;
 
             if (string.IsNullOrEmpty(word) || string.IsNullOrEmpty(partOfSpeech) || string.IsNullOrEmpty(definition) || string.IsNullOrEmpty(example))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -60,7 +60,7 @@ namespace TUDIEN
         private void ClearInputFields()
         {
             txtWord.Text = "";
-            txtPartOfSpeech.Text = "";
+            cmbPartOfSpeech.Text = "";
             rtbDefinition.Text = "";
             rtbExample.Text = "";
         }
