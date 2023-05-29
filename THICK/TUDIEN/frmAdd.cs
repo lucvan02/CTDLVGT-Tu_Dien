@@ -12,8 +12,6 @@ namespace TUDIEN
 {
     public partial class frmAdd : Form
     {
-        private DictionaryEntry[] entries;
-        DictionaryEntry NewEntry { get; set; }
         public frmAdd()
         {
             InitializeComponent();

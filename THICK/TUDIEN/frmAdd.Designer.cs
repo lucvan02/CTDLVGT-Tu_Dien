@@ -153,7 +153,7 @@ namespace TUDIEN
             this.cmbPartOfSpeech.Location = new System.Drawing.Point(198, 84);
             this.cmbPartOfSpeech.Name = "cmbPartOfSpeech";
             this.cmbPartOfSpeech.Size = new System.Drawing.Size(170, 21);
-            this.cmbPartOfSpeech.TabIndex = 32;
+            this.cmbPartOfSpeech.TabIndex = 2;
             // 
             // frmAdd
             // 

@@ -88,7 +88,7 @@ namespace TUDIEN
 
             if (result == DialogResult.Yes)
             {
-                this.Close(); // Close the form
+                this.Close();
             }
         }
 
@@ -111,7 +111,7 @@ namespace TUDIEN
 
             if (string.IsNullOrEmpty(fileName))
             {
-                MessageBox.Show("Vui lòng nhập tên file vào ô [Tên file]","Chưa điền tên file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng nhập tên file vào ô [File]","Chưa điền tên file", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -306,8 +306,11 @@ namespace TUDIEN
         {
             if (entries.Length == 0)
             {
-                MessageBox.Show("Từ điển trống! Không có từ để lưu vào file.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                DialogResult result = MessageBox.Show("Từ điển trống! Không có từ để lưu vào file. Tiếp tục lưu?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
             }
 
             try
@@ -341,9 +344,9 @@ namespace TUDIEN
             }
 
             entries = new DictionaryEntry[0];
-
+            int lineCount = 0;
             using (StreamReader reader = new StreamReader(fileName))
-            {
+            {               
                 while (!reader.EndOfStream)
                 {
                     string word = reader.ReadLine();
@@ -354,10 +357,14 @@ namespace TUDIEN
                     DictionaryEntry entry = new DictionaryEntry(word, partOfSpeech, definition, example);
 
                     AddEntry(entry);
-                }
+                    lineCount += 4;
+                }              
             }
-
-            MessageBox.Show("Đã tải dữ liệu từ file " + fileName, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Tải dữ liệu từ file " + fileName, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (lineCount == 0)
+                {
+                    MessageBox.Show("File không có từ nào để tải lên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
         }
 
         private void ClearInputFields()
@@ -372,7 +379,7 @@ namespace TUDIEN
 
             if (entries.Length == 0)
             {
-                MessageBox.Show("Từ điển trống. Có thể bạn chưa chọn file tải dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Từ điển trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -388,6 +395,7 @@ namespace TUDIEN
             if (selectedIndex >= 0)
             {
                 DictionaryEntry selectedEntry = entries[selectedIndex];
+                txtWord.Text = selectedEntry.word;
 
                 rtbLookupResult.Clear();
 
@@ -449,20 +457,3 @@ namespace TUDIEN
         }
     }
 }
-
-
-
-/*Trong chương trình này, cấu trúc dữ liệu chính là một mảng entries của lớp DictionaryEntry, trong đó mỗi mục trong mảng đại diện cho một từ trong từ điển.
-
-Các phương thức sắp xếp và tìm kiếm trong chương trình này sử dụng phương pháp tìm kiếm tuyến tính (linear search) và sắp xếp nổi bọt (bubble sort).
-
-Tìm kiếm tuyến tính: Trong phương thức LookupWord, chúng ta duyệt qua từng mục trong mảng entries để tìm kiếm từ cần tra. 
-Phương pháp tìm kiếm này có độ phức tạp O(n), trong đó n là số lượng từ trong từ điển. Điều này có nghĩa là thời gian tìm kiếm tăng theo tỉ lệ tuyến tính với số lượng từ.
-
-Sắp xếp nổi bọt: Trong phương thức SortEntries, chúng ta sử dụng thuật toán sắp xếp nổi bọt để sắp xếp các mục trong mảng entries theo thứ tự từ điển. 
-Thuật toán sắp xếp nổi bọt hoạt động bằng cách so sánh các cặp phần tử liền kề và hoán đổi chúng nếu cần, đến khi không còn phần tử nào cần hoán đổi nữa. 
-Độ phức tạp của thuật toán sắp xếp nổi bọt là O(n^2), trong đó n là số lượng từ trong từ điển. Điều này có nghĩa là thời gian sắp xếp tăng theo tỉ lệ bình phương với số lượng từ.
-
-Tóm lại, chương trình này sử dụng cấu trúc dữ liệu mảng và áp dụng các phương pháp tìm kiếm tuyến tính và sắp xếp nổi bọt để thao tác trên từ điển. 
-Đây là những phương pháp đơn giản và hiệu quả trong trường hợp từ điển có số lượng từ nhỏ. 
-Tuy nhiên, trong các ứng dụng thực tế với số lượng từ lớn, các thuật toán tìm kiếm và sắp xếp hiệu quả hơn như tìm kiếm nhị phân và sắp xếp nhanh có thể được áp dụng để cải thiện hiệu suất.*/

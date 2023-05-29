@@ -240,6 +240,7 @@ namespace TUDIEN
             this.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Từ điển Anh-Anh";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);

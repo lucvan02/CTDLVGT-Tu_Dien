@@ -1,84 +1,80 @@
-alo
-hjbhmn
-jmn
-kj
-cxc
-xcxzc
-dff
-xbcx
-czfz
-
-
-
-dfd
-df
-
-
-dfs
-sdfs
-fg
-sdg
-dfsddf
-d
-d
-d
-dsf
-ỵhbh
-hb
-jkmn
-f
-gh
-fgf
-fgg
-fg
-fhk
-ghg
-d
-fg
-dg
-g
-gg
-fg
-fgf
-fgfdg
-fg
-fgd
-fg
-gf
-dgd
-fgd
-fgd
-fg
-df
-fgdd
-dfg
-dg
-dg
-fgdfg
-hfh
-hg
-ff
-fgf
-dgs
-fgf
-fh
-fgfg
-hj
-hjg
-fgh
-gfg
-g
-d
-f
-ghf
-ghg
-mnmn
-jhggjh
-jhhn
-gjh
-sa
-df
-nbnb
-jdfsjfk
-dsjkfh
-dfjdjfn
+apple
+Noun
+A round fruit with red or green skin and firm white flesh.
+I ate an apple for a snack.
+banana
+Noun
+A long curved fruit with yellow skin.
+She peeled a banana and ate it.
+Bat
+Noun
+A wooden or metal club used in sports such as baseball or cricket
+He swung the baseball bat.
+Bat
+Noun
+A flying mammal that is active at night
+The bat is a nocturnal animal.
+Bat
+Verb
+To hit or strike with a bat or similar object.
+They batted around ideas during the meeting.
+bird
+Noun
+A warm-blooded, feathered vertebrate with wings.
+1. We saw a colorful bird in the garden.
+cat
+Noun
+A small domesticated carnivorous mammal.
+The cat purred as I stroked its fur.
+fast
+Adjective
+Moving or capable of moving quickly.
+The cheetah is a fast animal.
+flower
+Noun
+The reproductive structure of a plant, typically brightly colored.
+She picked a beautiful flower from the garden.
+giraffe
+Noun
+A tall African mammal with a long neck and spots on its coat.
+The giraffe reached up to eat leaves from the tree.
+heavy
+Adjective
+Having great weight or a high density.
+The elephant is a heavy animal.
+horse
+Noun
+A large four-legged domesticated mammal used for riding and pulling carts.
+She rode a horse across the open field.
+jump
+Verb
+To propel oneself off the ground by using the legs.
+The athlete can jump very high.
+light
+Adjective
+Having little weight or not heavy
+The feather is light and floats in the air.
+read
+Noun
+To look at and comprehend the meaning of written or printed matter.
+She enjoys reading books in her free time.
+run
+Verb
+To move swiftly on foot, faster than walking.
+He likes to run in the park.
+set
+Noun
+A collection of things that belong together, often used for a specific purpose. 
+The chess set is missing a piece.
+set
+Verb
+To put or place something in a particular position or location
+She set the table for dinner.
+swim
+Verb
+To move through water by propelling oneself with the limbs.
+She loves to swim in the ocean.
+write
+Verb
+To look at and comprehend the meaning of written or printed matter.
+She enjoys reading books in her free time.
