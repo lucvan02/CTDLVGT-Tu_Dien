@@ -1,1 +1,1 @@
-# Từ điển Anh-Anh
+# Dictionary
