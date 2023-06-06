@@ -14,7 +14,7 @@ namespace TUDIEN
         public MainForm()
         {
             InitializeComponent();
-            txtFileName.Text = "n20dccn037_mang.txt";
+            txtFileName.Text = "n20dccn037.txt";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -175,19 +175,6 @@ namespace TUDIEN
             entries = newArray;
             SortEntries();
             RefreshEntryList();
-        }
-
-        public void EditEntry(DictionaryEntry editedEntry)
-        {
-            for (int i = 0; i < lstEntries.Items.Count; i++)
-            {
-                DictionaryEntry entry = lstEntries.Items[i] as DictionaryEntry;
-                if (entry.word == editedEntry.word)
-                {
-                    lstEntries.Items[i] = editedEntry;
-                    break;
-                }
-            }
         }
 
         private void RemoveEntry(string word)
